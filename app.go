@@ -5,7 +5,6 @@ import (
 	. "championship/models"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 
@@ -43,9 +42,9 @@ func CreateLeagueEndPoint(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	league.CountryID = bson.NewObjectId()
-	league.CountryName = "England"
+	//league.CountryName = "England"
 	league.LeagueID = bson.NewObjectId()
-	league.LeagueName = "Premier League"
+	//league.LeagueName = "Premier League"
 	if err := dao.Insert(league); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
@@ -61,27 +60,28 @@ func DeleteLeagueEndPoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "not implemented yet !")
 }
 
-func determineListenAddress() (string, error) {
+/*func determineListenAddress() (string, error) {
 	port := os.Getenv("PORT")
 	if port == "" {
 		return "", fmt.Errorf("$PORT not set")
 	}
 	return ":" + port, nil
-}
+}*/
 
 func main() {
-	addr, err := determineListenAddress()
+	/*addr, err := determineListenAddress()
 	if err != nil {
 		log.Fatal(err)
-	}
+	}*/
+	port := os.Getenv("PORT")
 	r := mux.NewRouter()
 	r.HandleFunc("/league", AllLeaguesEndPoint).Methods("GET")
 	r.HandleFunc("/league", CreateLeagueEndPoint).Methods("POST")
 	r.HandleFunc("/league", UpdateLeagueEndPoint).Methods("PUT")
 	r.HandleFunc("/league", DeleteLeagueEndPoint).Methods("DELETE")
 	r.HandleFunc("/league/{id}", FindLeagueEndpoint).Methods("GET")
-
-	log.Fatal(http.ListenAndServe(addr, nil))
+	http.ListenAndServe(":"+port, nil)
+	//log.Fatal(http.ListenAndServe(addr, nil))
 
 	/*if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Fatal(err)
