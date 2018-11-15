@@ -48,7 +48,7 @@ func main() {
 
 	db = LeagueDB{}
 
-	Global_db.Init()
+	//Global_db.Init()
 	port := os.Getenv("PORT")
 	r := mux.NewRouter()
 	r.HandleFunc("/champ", champ).Methods("GET")
