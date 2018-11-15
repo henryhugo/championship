@@ -46,7 +46,7 @@ func main() {
 
 	db = LeagueDB{}
 
-	//Global_db.Init()
+	Global_db.Init()
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
