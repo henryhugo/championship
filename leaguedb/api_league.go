@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func league(w http.ResponseWriter, r *http.Request) {
+func leagueHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "POST":
 		var l League
@@ -21,7 +21,9 @@ func league(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 		fmt.Fprintln(w, "not implemented yet")
-	}
 
-	fmt.Fprintln(w, "not implemented yet !")
+	default:
+
+		fmt.Fprintln(w, "not implemented yet !")
+	}
 }

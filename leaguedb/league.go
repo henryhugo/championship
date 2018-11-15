@@ -2,13 +2,13 @@ package leaguedb
 
 type LeaguesStorage interface {
 	Init()
-	Add(s League) error
+	Add(l League) error
 }
 
 type League struct {
-	Name    string `json:"name"`
-	Country int    `json:"country"`
-	ID      string `json:"id"`
+	Name     string `json:"name"`
+	Country  int    `json:"country"`
+	LeagueID string `json:"leagueid"`
 }
 
 type LeaguesDB struct {
@@ -20,6 +20,6 @@ func (db *LeaguesDB) Init() {
 }
 
 func (db *LeaguesDB) Add(l League) error {
-	db.leagues[l.ID] = l
+	db.leagues[l.LeagueID] = l
 	return nil
 }

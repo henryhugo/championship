@@ -8,9 +8,10 @@ import (
 )
 
 type League struct {
-	ID      bson.ObjectId `bson:"_id" json:"id"`
-	Name    string        `bson:"name" json:"name"`
-	Country string        `bson:"country" json:"country"`
+	ID       bson.ObjectId `bson:"_id,omitempty"`
+	Name     string        `json:"name"`
+	Country  string        `json:"country"`
+	LeagueId string        `json:"leagueid"`
 }
 
 type MongoDB struct {
