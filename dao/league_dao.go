@@ -1,9 +1,9 @@
 package dao
 
 import (
+	. "championship/models"
 	"log"
 
-	. "github.com/fahadem/championship/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -59,4 +59,3 @@ func (l *LeaguesDAO) Update(league League) error {
 	err := db.C(COLLECTION).UpdateId(league.LeagueID, &league)
 	return err
 }
-
