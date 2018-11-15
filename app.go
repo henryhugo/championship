@@ -22,6 +22,6 @@ func main() {
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
-	http.HandleFunc("/champ/league", leaguedb.leagueHandler)
+	http.HandleFunc("/champ/league")
 	http.ListenAndServe(":"+port, nil)
 }
