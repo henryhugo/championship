@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-
-	"github.com/gorilla/mux"
 )
 
 type LeaguesStorage interface {
@@ -50,8 +48,8 @@ func main() {
 
 	//Global_db.Init()
 	port := os.Getenv("PORT")
-	r := mux.NewRouter()
-	r.HandleFunc("/champ", champ).Methods("GET")
-	r.HandleFunc("/champ/league", league).Methods("POST")
+
+	http.HandleFunc("/champ", champ)
+	http.HandleFunc("/champ/league", league)
 	http.ListenAndServe(":"+port, nil)
 }
