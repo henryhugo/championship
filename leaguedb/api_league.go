@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func leagueHandler(w http.ResponseWriter, r *http.Request) {
+func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "POST":
 		var l League

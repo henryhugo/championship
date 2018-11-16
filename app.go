@@ -9,7 +9,6 @@ import (
 
 func champ(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "api for championship league")
-
 }
 
 func main() {
@@ -22,6 +21,6 @@ func main() {
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
-	http.HandleFunc("/champ/league", leaguedb.LeaguesStorage.leagueHandler)
+	http.HandleFunc("/champ/league", leaguedb.LeagueHandler)
 	http.ListenAndServe(":"+port, nil)
 }
