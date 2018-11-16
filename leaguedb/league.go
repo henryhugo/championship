@@ -7,7 +7,7 @@ type LeaguesStorage interface {
 
 type League struct {
 	Name     string `json:"name"`
-	Country  int    `json:"country"`
+	Country  string `json:"country"`
 	LeagueID string `json:"leagueid"`
 }
 
