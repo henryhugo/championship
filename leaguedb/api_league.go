@@ -99,9 +99,12 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	case "GET":
 		{
-			fmt.Fprintln(w, "get case")
 
-			/*if pathwhID.MatchString(r.URL.Path) {
+			if pathwhID.MatchString(r.URL.Path) {
+				fmt.Fprintln(w, "get case")
+			}
+
+			/*
 				idWant := parts[4]
 				for id, file := range whDB {
 					if id == idWant {
