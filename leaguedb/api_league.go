@@ -78,7 +78,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 
 func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 	http.Header.Add(w.Header(), "content-type", "application/json")
-	parts := strings.Split(r.URL.Path, "/")
+	//parts := strings.Split(r.URL.Path, "/")
 	switch r.Method {
 	case "POST":
 		{
@@ -99,7 +99,9 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	case "GET":
 		{
-			if pathwhID.MatchString(r.URL.Path) {
+			fmt.Fprintln(w, "get case")
+
+			/*if pathwhID.MatchString(r.URL.Path) {
 				idWant := parts[4]
 				for id, file := range whDB {
 					if id == idWant {
@@ -107,7 +109,7 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 
-			}
+			}*/
 		}
 	}
 }
