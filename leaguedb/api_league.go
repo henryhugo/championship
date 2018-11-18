@@ -33,7 +33,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			Global_db.Add(l)
-			text := "{\"text\": \"TEST\"}"
+			text := "{\"text\": \"New league added to the database !\"}"
 			payload := strings.NewReader(text)
 			for _, wh := range whDB {
 				client := &http.Client{Timeout: (time.Second * 30)}
@@ -94,12 +94,13 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 			newId := Idstr + strValue
 			idCountwh += 1
 			whDB[newId] = wh
+			json.NewEncoder(w).Encode(newId)
 
 		}
 	case "GET":
 		{
 			if pathwhID.MatchString(r.URL.Path) {
-				idWant := parts[3]
+				idWant := parts[4]
 				for id, file := range whDB {
 					if id == idWant {
 						json.NewEncoder(w).Encode(file)
