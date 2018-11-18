@@ -33,7 +33,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			Global_db.Add(l)
-			text := "{\"text\": \"New league added to the database !\"}"
+			text := "{\"text\": \"New league added to the database " + l.Name + "!\"}"
 			payload := strings.NewReader(text)
 			for _, wh := range whDB {
 				client := &http.Client{Timeout: (time.Second * 30)}
@@ -50,24 +50,20 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 	case "GET":
-		{
-
-		}
-		/*http.Header.Add(w.Header(), "content-type", "application/json")
-		//parts := strings.Split(r.URL.Path, "/")
+		http.Header.Add(w.Header(), "content-type", "application/json")
+		parts := strings.Split(r.URL.Path, "/")
 		switch {
 		case pathLeague.MatchString(r.URL.Path):
 			{
-
+				fmt.Fprint(w, Global_db.Display())
 			}
-		case pathTeam.MatchString(r.URL.Path):
+		case pathTeamid.MatchString(r.URL.Path):
 			{
-
+				teamName := parts[4]
+				fmt.Fprint(w, Global_db.FindTeam(teamName))
 			}
 
-		}*/
-
-		//fmt.Fprintln(w, "not implemented yet")
+		}
 
 	default:
 
@@ -121,3 +117,5 @@ func InitWh() {
 }
 
 var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
+var pathLeague, _ = regexp.Compile("/champ/leagues[/]{1}$")
+var pathTeamid, _ = regexp.Compile("/champ/leagues/[A-Z]{3}$")

@@ -20,13 +20,15 @@ func main() {
 		LeaguesCollectionName: "league",
 	}
 
+
 	//mongodb storage
 	leaguedb.Global_db.Init()
 
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
-	http.HandleFunc("/champ/league", leaguedb.LeagueHandler)    //POST
-	http.HandleFunc("/champ/webhook/", leaguedb.WebhookHandler) //POST
+	http.HandleFunc("/champ/leagues/", leaguedb.LeagueHandler)  //POST
+	http.HandleFunc("/champ/webhook/", leaguedb.WebhookHandler) //POST et GET
+	//http.HandleFunc("/champ/(nomdepays)/(date)||(nomequipe)||(day)", leaguedb.MatchHandler)
 	http.ListenAndServe(":"+port, nil)
 }
