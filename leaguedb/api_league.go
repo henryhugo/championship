@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -77,7 +78,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 
 func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 	http.Header.Add(w.Header(), "content-type", "application/json")
-	//parts := strings.Split(r.URL.Path, "/")
+	parts := strings.Split(r.URL.Path, "/")
 	switch r.Method {
 	case "POST":
 		{
@@ -95,6 +96,18 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 			whDB[newId] = wh
 
 		}
+	case "GET":
+		{
+			if pathwhID.MatchString(r.URL.Path) {
+				idWant := parts[3]
+				for id, file := range whDB {
+					if id == idWant {
+						json.NewEncoder(w).Encode(file)
+					}
+				}
+
+			}
+		}
 	}
 }
 
@@ -103,3 +116,5 @@ func InitWh() {
 	whDB = map[string]webhook{}
 
 }
+
+var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")

@@ -26,7 +26,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
-	http.HandleFunc("/champ/league", leaguedb.LeagueHandler)
-	http.HandleFunc("/champ/webhook", leaguedb.WebhookHandler)
+	http.HandleFunc("/champ/league", leaguedb.LeagueHandler)   //POST
+	http.HandleFunc("/champ/webhook", leaguedb.WebhookHandler) //POST
 	http.ListenAndServe(":"+port, nil)
 }
