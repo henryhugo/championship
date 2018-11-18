@@ -12,6 +12,7 @@ func champ(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	leaguedb.InitWh()
 	//in memory strorage
 	leaguedb.Global_db = &leaguedb.LeaguesMongoDB{
 		DatabaseURL:           "mongodb://hugoh:6926a5b8@ds057548.mlab.com:57548/championship",
@@ -26,5 +27,6 @@ func main() {
 
 	http.HandleFunc("/champ", champ)
 	http.HandleFunc("/champ/league", leaguedb.LeagueHandler)
+	http.HandleFunc("/champ/webhook", leaguedb.WebhookHandler)
 	http.ListenAndServe(":"+port, nil)
 }

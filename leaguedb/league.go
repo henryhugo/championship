@@ -3,6 +3,7 @@ package leaguedb
 type LeaguesStorage interface {
 	Init()
 	Add(l League) error
+	Get(key string) (League, bool)
 }
 
 type League struct {
@@ -22,4 +23,9 @@ func (db *LeaguesDB) Init() {
 func (db *LeaguesDB) Add(l League) error {
 	db.leagues[l.LeagueID] = l
 	return nil
+}
+
+func (db *LeaguesDB) Get(keyID string) (League, bool) {
+	l, ok := db.leagues[keyID]
+	return l, ok
 }

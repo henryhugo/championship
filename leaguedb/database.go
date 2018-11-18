@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	mgo "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var Global_db LeaguesStorage
@@ -49,4 +50,22 @@ func (db *LeaguesMongoDB) Add(s League) error {
 	}
 
 	return nil
+}
+
+func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
+	session, err := mgo.Dial(db.DatabaseURL)
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	league := League{}
+	allWasGood := true
+
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"leagueid": keyID}).One(&league)
+	if err != nil {
+		allWasGood = false
+	}
+
+	return league, allWasGood
 }
