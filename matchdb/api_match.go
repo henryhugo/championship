@@ -191,7 +191,8 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 
 		if pathDel.MatchString(r.URL.Path) {
 			idWanted := parts[4]
-			Global_db.RemoveDocument(idWanted)
+			fmt.Fprintln(w, parts[4])
+			//Global_db.RemoveDocument(idWanted)
 		}
 
 	default:
