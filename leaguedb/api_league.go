@@ -96,7 +96,7 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		{
 			if pathwhID.MatchString(r.URL.Path) {
-				idWant := parts[4]
+				idWant := parts[3]
 				for id, file := range whDB {
 					if id == idWant {
 						json.NewEncoder(w).Encode(file)

@@ -36,14 +36,14 @@ func (db *LeaguesMongoDB) Init() {
 	}
 }
 
-func (db *LeaguesMongoDB) Add(s League) error {
+func (db *LeaguesMongoDB) Add(l League) error {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
 	}
 	defer session.Close()
 
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Insert(s)
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Insert(l)
 	if err != nil {
 		fmt.Printf("error in Insert(): %v", err.Error())
 		return err
@@ -70,7 +70,7 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 	return league, allWasGood
 }
 
-func (db *LeaguesMongoDB) DisplayLeagueName() string {
+/*func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -88,4 +88,4 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 func (db *LeaguesMongoDB) FindTeam(team string) string {
 
 	return ""
-}
+}*/
