@@ -1,6 +1,7 @@
 package leaguedb
 
 import (
+	"encoding/json"
 	"fmt"
 
 	mgo "gopkg.in/mgo.v2"
@@ -74,7 +75,7 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 	return league, allWasGood
 }
 
-func (db *LeaguesMongoDB) DisplayLeagueName() League {
+func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -83,14 +84,24 @@ func (db *LeaguesMongoDB) DisplayLeagueName() League {
 
 	//allWasGood := true
 
-	league := League{}
-	//var nameList []League
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).One(&league)
+	//league := League{}
+	var nameList []League
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(nil).All(&nameList)
 
-	return league
+	out, err := json.MarshalIndent(nameList, " ", " ")
+	return string(out)
 }
 
 /*func (db *LeaguesMongoDB) FindTeam(team string) string {
+	session, err := mgo.Dial(db.DatabaseURL)
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
 
-	return ""
+	league := League{}
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).One(&league)
+
+	res := "Your team play in league " + league.Name + "their code is" + league.Teams[team].code
+	return res
 }*/
