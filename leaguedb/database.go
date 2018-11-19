@@ -69,3 +69,12 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 
 	return league, allWasGood
 }
+
+func (db *LeaguesMongoDB) Display() {
+
+}
+
+func (db *LeaguesMongoDB) FindTeam(team string) string {
+
+	return ""
+}
