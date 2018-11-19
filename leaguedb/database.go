@@ -83,10 +83,10 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 
 	//allWasGood := true
 
-	result := Resultat{}
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": 1}).One(&result)
+	league := League{}
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": 1}).One(&league)
 
-	return result.res
+	return league.Name
 }
 
 /*func (db *LeaguesMongoDB) FindTeam(team string) string {

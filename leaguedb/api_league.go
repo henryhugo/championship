@@ -33,7 +33,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			Global_db.Add(l)
-			text := "{\"text\": \"New league added to the database " + l.Name + "!\"}"
+			text := "{\"text\": \"New league added to the database :" + l.Name + " !\"}"
 			payload := strings.NewReader(text)
 			for _, wh := range whDB {
 				client := &http.Client{Timeout: (time.Second * 30)}
