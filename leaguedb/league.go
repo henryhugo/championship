@@ -12,7 +12,7 @@ type League struct {
 	Name     string `json:"name"`
 	Country  string `json:"country"`
 	LeagueID string `json:"leagueid"`
-	Teams    []Team `json:"teams"`
+	//Teams    []Team `json:"teams"`
 }
 
 type Team struct {
@@ -39,7 +39,7 @@ func (db *LeaguesDB) Get(keyID string) (League, bool) {
 	return l, ok
 }
 
-func (db *LeaguesDB) DisplayLeagueName() string {
+/*func (db *LeaguesDB) DisplayLeagueName() string {
 	str := ""
 	for _, l := range db.leagues {
 		str = str + l.Name
@@ -59,4 +59,4 @@ func (db *LeaguesDB) findTeam(team string) string {
 		}
 	}
 	return str
-}
+}*/
