@@ -131,33 +131,56 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
 					return
 				}
-				fmt.Fprint(w, info+" "+iw)
 				switch info {
 				case "date":
 					{
 						for _, r := range m.Rounds {
 							if r.Name == iw {
 								for _, m := range r.Matches {
-									json.NewEncoder(w).Encode(m.Date)
+									fmt.Fprint(w, m.Team1.Name+"-"+m.Team2.Name+" "+m.Date)
 								}
 							}
 						}
 					}
 				case "team1":
 					{
-
+						for _, r := range m.Rounds {
+							if r.Name == iw {
+								for _, m := range r.Matches {
+									json.NewEncoder(w).Encode(m.Team1)
+								}
+							}
+						}
 					}
 				case "team2":
 					{
-
+						for _, r := range m.Rounds {
+							if r.Name == iw {
+								for _, m := range r.Matches {
+									json.NewEncoder(w).Encode(m.Team2)
+								}
+							}
+						}
 					}
 				case "score1":
 					{
-
+						for _, r := range m.Rounds {
+							if r.Name == iw {
+								for _, m := range r.Matches {
+									json.NewEncoder(w).Encode(m.Score1)
+								}
+							}
+						}
 					}
 				case "score2":
 					{
-
+						for _, r := range m.Rounds {
+							if r.Name == iw {
+								for _, m := range r.Matches {
+									json.NewEncoder(w).Encode(m.Score2)
+								}
+							}
+						}
 					}
 				}
 			}
