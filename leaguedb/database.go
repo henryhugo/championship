@@ -15,6 +15,10 @@ type LeaguesMongoDB struct {
 	LeaguesCollectionName string
 }
 
+type Resultat struct {
+	res string
+}
+
 func (db *LeaguesMongoDB) Init() {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
@@ -77,12 +81,12 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	}
 	defer session.Close()
 
-	str := ""
 	//allWasGood := true
 
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(nil).Select(bson.M{"name": 1}).One(&str)
+	result := Resultat{}
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": 1}).One(&result)
 
-	return str
+	return result.res
 }
 
 /*func (db *LeaguesMongoDB) FindTeam(team string) string {
