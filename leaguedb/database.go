@@ -85,7 +85,7 @@ func (db *LeaguesMongoDB) DisplayLeagueName() []League {
 
 	//league := League{}
 	var nameList []League
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).All(&nameList)
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).One(&nameList)
 
 	return nameList
 }
