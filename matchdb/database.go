@@ -3,6 +3,7 @@ package matchdb
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -88,4 +89,21 @@ func (db *MatchesMongoDB) DisplayMatches() string {
 	err = session.DB(db.DatabaseName).C(db.MatchesCollectionName).Find(nil).All(&list)
 	out, err := json.MarshalIndent(list, " ", " ")
 	return string(out)
+}
+
+func (db *MatchesMongoDB) RemoveDocument(keyID string) {
+	session, err := mgo.Dial(db.DatabaseURL)
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	//allWasGood := true
+
+	err = session.DB(db.DatabaseName).C(db.MatchesCollectionName).Remove(bson.M{"name": keyID})
+	if err != nil {
+		fmt.Printf("remove fail %v\n", err)
+		os.Exit(1)
+	}
+
 }

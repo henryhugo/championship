@@ -15,24 +15,21 @@ func champ(w http.ResponseWriter, r *http.Request) {
 func main() {
 	leaguedb.InitWh()
 	matchdb.InitWh()
-	//in memory strorage
+
 	leaguedb.Global_db = &leaguedb.LeaguesMongoDB{
 		DatabaseURL:           "mongodb://hugoh:6926a5b8@ds057548.mlab.com:57548/championship",
 		DatabaseName:          "championship",
 		LeaguesCollectionName: "league",
 	}
 
-	//mongodb storage
 	leaguedb.Global_db.Init()
 
-	//in memory storage
 	matchdb.Global_db = &matchdb.MatchesMongoDB{
 		DatabaseURL:           "mongodb://hugoh:6926a5b8@ds057548.mlab.com:57548/championship",
 		DatabaseName:          "championship",
 		MatchesCollectionName: "matchs",
 	}
 
-	//mongodb storage
 	matchdb.Global_db.Init()
 
 	port := os.Getenv("PORT")
@@ -41,6 +38,7 @@ func main() {
 	http.HandleFunc("/champ/leagues/", leaguedb.LeagueHandler)              //POST and GET
 	http.HandleFunc("/champ/webhookLeague/", leaguedb.WebhookLeagueHandler) //POST and GET
 	http.HandleFunc("/champ/matchs/", matchdb.MatchHandler)
-	http.HandleFunc("/champ/webhookMatch/", matchdb.WebhookMatchHandler) //POST
+	http.HandleFunc("/champ/webhookMatch/", matchdb.WebhookMatchHandler)
+
 	http.ListenAndServe(":"+port, nil)
 }
