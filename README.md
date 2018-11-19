@@ -2,7 +2,7 @@
 
 Build RESTful API in Go and MongoDB The REST API service will expose endpoints to manage a store of leagues and teams. The API will allow to see data on leagues, teams and matchs.The API will also allow to receive alerts when new data are added using Slack and webhooks via a registration.
 
-We worked ~20h each on the project, we learned about mongodb because we had difficulties with it during the 2nd assignement. What was hard was to find json files that we can use for football leagues and using mongodb with golang because their not so much exemple on internet.
+We worked ~20h each on the project, we learned about mongodb because we had difficulties with it during the 2nd assignement. What was hard was to find json files that we can use for football leagues and using mongodb with golang because their not so much exemple on internet. For this type of project, it it certainly easier to choose sql because we have relatonal data structure.
 
 The app url is https://championshipleague.herokuapp.com
 
