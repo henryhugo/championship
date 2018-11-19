@@ -5,7 +5,7 @@ type MatchesStorage interface {
 	Add(m MatchesL) error
 	Get(key string) (MatchesL, bool)
 	DisplayMatches() string
-	//RemoveDocument(keyID string)
+	RemoveDocument(keyID string)
 }
 
 type Team struct {
