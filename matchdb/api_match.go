@@ -79,7 +79,8 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
 					return
 				}
-				switch infoWanted {
+				json.NewEncoder(w).Encode(m)
+				/*switch infoWanted {
 				case "name":
 					fmt.Fprint(w, m.Name)
 				case "leagueID":
@@ -89,7 +90,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 				default:
 					fmt.Fprint(w, "Not found")
 
-				}
+				}*/
 
 			}
 		case pathMatchday.MatchString(r.URL.Path): //matchdayX
