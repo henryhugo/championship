@@ -91,7 +91,7 @@ func (db *MatchesMongoDB) DisplayMatches() string {
 	return string(out)
 }
 
-func (db *MatchesMongoDB) RemoveDocument(keyID string) {
+/*func (db *MatchesMongoDB) RemoveDocument(keyID string) {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -106,4 +106,4 @@ func (db *MatchesMongoDB) RemoveDocument(keyID string) {
 		os.Exit(1)
 	}
 
-}
+}*/
