@@ -207,7 +207,7 @@ func WebhookMatchHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "POST":
 		{
-			//fmt.Fprintln(w, "wh")
+
 			var wh webhook
 			//TODO check correct wh format
 			err := json.NewDecoder(r.Body).Decode(&wh)
