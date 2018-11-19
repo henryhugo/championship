@@ -44,7 +44,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 					fmt.Print(err.Error())
 				}
 				fmt.Println(resp.Status)
-				fmt.Fprint(w, "ok") 
+				fmt.Fprint(w, "ok")
 				return
 			}
 		}
@@ -72,19 +72,19 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 				switch infoWanted {
 				case "country":
 					{
-						fmt.Fprint(w, l.Country)
+						json.NewEncoder(w).Encode(l.Country)
 					}
 				case "leagueID":
 					{
-						fmt.Fprint(w, l.LeagueID)
+						json.NewEncoder(w).Encode(l.LeagueID)
 					}
 				case "name":
 					{
-						fmt.Fprint(w, l.Name)
+						json.NewEncoder(w).Encode(l.Name)
 					}
 				case "teams":
 					{
-						fmt.Fprint(w, l.Teams)
+						json.NewEncoder(w).Encode(l.Teams)
 					}
 				default:
 					fmt.Fprint(w, "Not found")

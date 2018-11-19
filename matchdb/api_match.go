@@ -81,11 +81,11 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				switch infoWanted {
 				case "name":
-					fmt.Fprint(w, m.Name)
+					json.NewEncoder(w).Encode(m.Name)
 				case "leagueID":
-					fmt.Fprint(w, m.LeagueID)
+					json.NewEncoder(w).Encode(m.LeagueID)
 				case "rounds":
-					fmt.Fprint(w, m.Rounds)
+					json.NewEncoder(w).Encode(m.Rounds)
 				default:
 					fmt.Fprint(w, "Not found")
 
