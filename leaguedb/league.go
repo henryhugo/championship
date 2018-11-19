@@ -12,7 +12,7 @@ type League struct {
 	Name     string `json:"name"`
 	Country  string `json:"country"`
 	LeagueID string `json:"leagueid"`
-	//Teams    []Team `json:"teams"`
+	Teams    []Team `json:"teams"`
 }
 
 type Team struct {

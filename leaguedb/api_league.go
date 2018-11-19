@@ -55,7 +55,8 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 	switch {
 	case pathLeague.MatchString(r.URL.Path):
 		{
-			fmt.Fprint(w, Global_db.DisplayLeagueName())
+			//fmt.Fprint(w, Global_db.DisplayLeagueName())
+
 		}
 	case pathTeamid.MatchString(r.URL.Path):
 		{
