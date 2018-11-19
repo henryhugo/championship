@@ -4,7 +4,7 @@ type LeaguesStorage interface {
 	Init()
 	Add(l League) error
 	Get(key string) (League, bool)
-	Display() string
+	DisplayLeagueName() string
 	FindTeam(team string) string
 }
 
@@ -39,7 +39,7 @@ func (db *LeaguesDB) Get(keyID string) (League, bool) {
 	return l, ok
 }
 
-func (db *LeaguesDB) Display() string {
+func (db *LeaguesDB) DisplayLeagueName() string {
 	str := ""
 	for _, l := range db.leagues {
 		str = str + l.Name
