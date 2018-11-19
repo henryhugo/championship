@@ -79,7 +79,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
 					return
 				}
-				json.NewEncoder(w).Encode(m)
+
 				switch infoWanted {
 				case "name":
 					fmt.Fprint(w, m.Name)
