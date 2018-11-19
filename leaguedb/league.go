@@ -5,7 +5,7 @@ type LeaguesStorage interface {
 	Add(l League) error
 	Get(key string) (League, bool)
 	DisplayLeague() string
-	//Find(id string) string
+	RemoveDocument(keyID string)
 }
 
 type League struct {

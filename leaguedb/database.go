@@ -3,6 +3,7 @@ package leaguedb
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -89,17 +90,19 @@ func (db *LeaguesMongoDB) DisplayLeague() string {
 	return string(out)
 }
 
-/*func (db *LeaguesMongoDB) FindTeam(team string) string {
+func (db *LeaguesMongoDB) RemoveDocument(keyID string) {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
 	}
 	defer session.Close()
 
-	league := League{}
-	cnt, err := session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(nil).Select(bson.M{"teams"}).Count()
+	//allWasGood := true
 
-	//res := "Your team play in league " + league.Name + "their code is" + league.Teams[cnt].Code
-	res := strconv.Itoa(cnt)
-	return res
-}*/
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Remove(bson.M{"leagueid": keyID})
+	if err != nil {
+		fmt.Printf("remove fail %v\n", err)
+		os.Exit(1)
+	}
+
+}

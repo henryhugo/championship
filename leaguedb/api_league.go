@@ -104,6 +104,13 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 			}
 
 		}
+	case "DELETE":
+		parts := strings.Split(r.URL.Path, "/")
+
+		if pathDel.MatchString(r.URL.Path) {
+			idWanted := parts[4]
+			Global_db.RemoveDocument(idWanted)
+		}
 
 	default:
 
@@ -158,3 +165,4 @@ var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
 var pathLeague, _ = regexp.Compile("/champ/leagues[/]{1}$")
 var pathidfield, _ = regexp.Compile("/champ/leagues/id[0-9]+/(country$|name$|leagueID$|teams$)")
 var pathid, _ = regexp.Compile("/champ/leagues/id[0-9]+$")
+var pathDel, _ = regexp.Compile("/champ/leagues/delete/id[0-9]+$")
