@@ -8,17 +8,17 @@ The home page is https://championshipleague.herokuapp.com/champ
 
 ## Leagues
 
-To have information about the leagues use https://championshipleague.herokuapp.com/champ/leagues using GET method
+To have information about the leagues use https://championshipleague.herokuapp.com/champ/leagues/ using GET method
 
-To put information about a league use https://championshipleague.herokuapp.com/champ/leagues/ using PUSH method with the proper .json file
+To put information about a league use https://championshipleague.herokuapp.com/champ/leagues/ using POST method with the proper .json file
 
 To have information about a league use https://championshipleague.herokuapp.com/champ/leagues/{#id}/{country|name|leagueID|teams} using GET method
 
 ## Leagues and Matches
 
-To have information about the matches of all leagues just use https://championshipleague.herokuapp.com/champ/matchs using GET method
+To have information about the matches of all leagues just use https://championshipleague.herokuapp.com/champ/matchs/ using GET method
 
-To put information about a league and the matches use https://championshipleague.herokuapp.com/champ/matchs/ using PUSH method with the proper .json file
+To put information about a league and the matches use https://championshipleague.herokuapp.com/champ/matchs/ using POST method with the proper .json file
 
 For a league https://championshipleague.herokuapp.com/champ/matchs/{#id} using GET method or 
 https://championshipleague.herokuapp.com/champ/matchs/{#id}/{name|leagueID|rounds}
