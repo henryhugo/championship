@@ -83,10 +83,11 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 
 	//allWasGood := true
 
-	league := League{}
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": "Premier League"}).One(&league)
+	//league := League{}
+	result := Resultat{}
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).One(&result)
 
-	return league.Name
+	return result.res
 }
 
 /*func (db *LeaguesMongoDB) FindTeam(team string) string {
