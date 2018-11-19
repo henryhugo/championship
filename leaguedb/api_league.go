@@ -49,22 +49,22 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-	/*case "GET":
-	http.Header.Add(w.Header(), "content-type", "application/json")
-	parts := strings.Split(r.URL.Path, "/")
-	switch {
-	case pathLeague.MatchString(r.URL.Path):
-		{
-			//fmt.Fprint(w, Global_db.DisplayLeagueName())
+	case "GET":
+		http.Header.Add(w.Header(), "content-type", "application/json")
+		//parts := strings.Split(r.URL.Path, "/")
+		switch {
+		case pathLeague.MatchString(r.URL.Path):
+			{
+				fmt.Fprint(w, Global_db.DisplayLeagueName())
+
+			}
+			/*case pathTeamid.MatchString(r.URL.Path):
+			{
+				teamName := parts[4]
+				fmt.Fprint(w, Global_db.FindTeam(teamName))
+			}*/
 
 		}
-	case pathTeamid.MatchString(r.URL.Path):
-		{
-			teamName := parts[4]
-			fmt.Fprint(w, Global_db.FindTeam(teamName))
-		}
-
-	}*/
 
 	default:
 

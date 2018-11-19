@@ -70,7 +70,7 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 	return league, allWasGood
 }
 
-/*func (db *LeaguesMongoDB) DisplayLeagueName() string {
+func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -85,7 +85,7 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 	return str
 }
 
-func (db *LeaguesMongoDB) FindTeam(team string) string {
+/*func (db *LeaguesMongoDB) FindTeam(team string) string {
 
 	return ""
 }*/
