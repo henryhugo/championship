@@ -100,7 +100,6 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 				strings.Replace(infoWanted, "m", "M", 1)
 				tab := strings.SplitAfterN(infoWanted, "y", 2)
 				info := tab[0] + " " + tab[1]
-				fmt.Fprint(w, info)
 				m, ok := Global_db.Get(id)
 				if !ok {
 					// TODO find a better Error Code (HTTP Status)
