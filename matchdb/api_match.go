@@ -79,7 +79,6 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
 					return
 				}
-
 				switch infoWanted {
 				case "name":
 					fmt.Fprint(w, m.Name)
