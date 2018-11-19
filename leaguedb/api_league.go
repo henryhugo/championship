@@ -61,7 +61,8 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 		case pathTeamid.MatchString(r.URL.Path):
 			{
 				teamName := parts[3]
-				fmt.Fprint(w, Global_db.FindTeam(teamName))
+				fmt.Fprint(w, teamName)
+				//fmt.Fprint(w, Global_db.FindTeam(teamName))
 			}
 
 		}
