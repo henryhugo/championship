@@ -91,6 +91,17 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 
 				}
 			}
+		case pathid.MatchString(r.URL.Path):
+			{
+				id := parts[3]
+				l, ok := Global_db.Get(id)
+				if !ok {
+					// TODO find a better Error Code (HTTP Status)
+					http.Error(w, "League don't exists.", http.StatusBadRequest)
+					return
+				}
+				json.NewEncoder(w).Encode(l)
+			}
 
 		}
 
@@ -107,7 +118,6 @@ func WebhookHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "POST":
 		{
-			//fmt.Fprintln(w, "wh")
 			var wh webhook
 			//TODO check correct wh format
 			err := json.NewDecoder(r.Body).Decode(&wh)
@@ -147,3 +157,4 @@ func InitWh() {
 var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
 var pathLeague, _ = regexp.Compile("/champ/leagues[/]{1}$")
 var pathidfield, _ = regexp.Compile("/champ/leagues/id[0-9]+/(country$|name$|leagueID$|teams$)")
+var pathid, _ = regexp.Compile("/champ/leagues/id[0-9]+$")

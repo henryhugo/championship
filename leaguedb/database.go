@@ -82,9 +82,6 @@ func (db *LeaguesMongoDB) DisplayLeague() string {
 	}
 	defer session.Close()
 
-	//allWasGood := true
-
-	//league := League{}
 	var nameList []League
 	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(nil).All(&nameList)
 

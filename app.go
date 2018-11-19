@@ -27,8 +27,8 @@ func main() {
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
-	http.HandleFunc("/champ/leagues/", leaguedb.LeagueHandler)  //POST
-	http.HandleFunc("/champ/webhook/", leaguedb.WebhookHandler) //POST et GET
+	http.HandleFunc("/champ/leagues/", leaguedb.LeagueHandler)  //POST and GET
+	http.HandleFunc("/champ/webhook/", leaguedb.WebhookHandler) //POST and GET
 	//http.HandleFunc("/champ/(nomdepays)/(date)||(nomequipe)||(day)", leaguedb.MatchHandler)
 	http.ListenAndServe(":"+port, nil)
 }
