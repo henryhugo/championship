@@ -12,7 +12,11 @@ To have information about the leagues use https://championshipleague.herokuapp.c
 
 To put information about a league use https://championshipleague.herokuapp.com/champ/leagues/ using POST method with the proper .json file
 
-To have information about a league use https://championshipleague.herokuapp.com/champ/leagues/{#id}/{country|name|leagueID|teams} using GET method
+To have information about a league use https://championshipleague.herokuapp.com/champ/leagues/{#id}/{country|name|leagueID|teams} using GET method or just https://championshipleague.herokuapp.com/champ/leagues/{#id}
+
+To Delete a league  use https://championshipleague.herokuapp.com/champ/leagues/delete/{#id} with DELETE method
+
+
 
 ## Leagues and Matches
 
