@@ -72,7 +72,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 			{
 				var m MatchesL
 				id := parts[3]
-				//infoWanted := parts[4]
+				infoWanted := parts[4]
 				m, ok := Global_db.Get(id)
 				if !ok {
 					// TODO find a better Error Code (HTTP Status)
@@ -80,7 +80,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 				json.NewEncoder(w).Encode(m)
-				/*switch infoWanted {
+				switch infoWanted {
 				case "name":
 					fmt.Fprint(w, m.Name)
 				case "leagueID":
@@ -90,7 +90,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 				default:
 					fmt.Fprint(w, "Not found")
 
-				}*/
+				}
 
 			}
 		case pathMatchday.MatchString(r.URL.Path): //matchdayX
@@ -216,5 +216,5 @@ var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
 var pathMatchs, _ = regexp.Compile("/champ/matchs/$")
 var pathMatchsID, _ = regexp.Compile("/champ/matchs/id[0-9]+$")
 var pathMatchday, _ = regexp.Compile("/champ/matchs/id[0-9]+/matchday[0-9]+&")
-var pathMatchsFields, _ = regexp.Compile("/champ/matchs/id[0-9]+/(name$|leagueID$|rounds$)&")
-var pathMatchFields, _ = regexp.Compile("/champ/matchs/id[0-9]+/matchday[0-9]+/(date$|team1$|team2$|score1|score2)&")
+var pathMatchsFields, _ = regexp.Compile("/champ/matchs/id[0-9]+/(name$|leagueID$|rounds$)")
+var pathMatchFields, _ = regexp.Compile("/champ/matchs/id[0-9]+/matchday[0-9]+/(date$|team1$|team2$|score1|score2)")
