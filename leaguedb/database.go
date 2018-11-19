@@ -103,6 +103,7 @@ func (db *LeaguesMongoDB) FindTeam(team string) string {
 	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).One(&league)
 	cnt, err := session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).Count()
 
-	res := "Your team play in league " + league.Name + "their code is" + league.Teams[cnt].Code
-	return res
+	//res := "Your team play in league " + league.Name + "their code is" + league.Teams[cnt].Code
+	res := cnt
+	return string(res)
 }
