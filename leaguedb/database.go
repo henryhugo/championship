@@ -3,7 +3,6 @@ package leaguedb
 import (
 	"encoding/json"
 	"fmt"
-	"strconv"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -76,7 +75,7 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 	return league, allWasGood
 }
 
-func (db *LeaguesMongoDB) DisplayLeagueName() string {
+func (db *LeaguesMongoDB) DisplayLeague() string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -93,18 +92,17 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	return string(out)
 }
 
-func (db *LeaguesMongoDB) FindTeam(team string) string {
+/*func (db *LeaguesMongoDB) FindTeam(team string) string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
 	}
 	defer session.Close()
 
-	//league := League{}
-	//err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).One(&league)
-	cnt, err := session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).Count()
+	league := League{}
+	cnt, err := session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(nil).Select(bson.M{"teams"}).Count()
 
 	//res := "Your team play in league " + league.Name + "their code is" + league.Teams[cnt].Code
 	res := strconv.Itoa(cnt)
 	return res
-}
+}*/

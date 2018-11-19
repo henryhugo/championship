@@ -56,13 +56,40 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 		case pathLeague.MatchString(r.URL.Path):
 			{
 
-				fmt.Fprint(w, Global_db.DisplayLeagueName())
+				fmt.Fprint(w, Global_db.DisplayLeague())
 			}
-		case pathTeamid.MatchString(r.URL.Path):
+		case pathidfield.MatchString(r.URL.Path):
 			{
-				teamName := parts[3]
-				//fmt.Fprint(w, teamName)
-				fmt.Fprint(w, Global_db.FindTeam(teamName))
+				var l League
+				id := parts[3]
+				infoWanted := parts[4]
+				l, ok := Global_db.Get(id)
+				if !ok {
+					// TODO find a better Error Code (HTTP Status)
+					http.Error(w, "League don't exists.", http.StatusBadRequest)
+					return
+				}
+				switch infoWanted {
+				case "country":
+					{
+						fmt.Fprint(w, l.Country)
+					}
+				case "leagueID":
+					{
+						fmt.Fprint(w, l.LeagueID)
+					}
+				case "name":
+					{
+						fmt.Fprint(w, l.Name)
+					}
+				case "teams":
+					{
+						fmt.Fprint(w, l.Teams)
+					}
+				default:
+					fmt.Fprint(w, "Not found")
+
+				}
 			}
 
 		}
@@ -119,4 +146,4 @@ func InitWh() {
 
 var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
 var pathLeague, _ = regexp.Compile("/champ/leagues[/]{1}$")
-var pathTeamid, _ = regexp.Compile("/champ/leagues/[A-Za-z]+")
+var pathidfield, _ = regexp.Compile("/champ/leagues/id[0-9]+/(country$|name$|leagueID$|teams$)")

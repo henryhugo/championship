@@ -4,8 +4,8 @@ type LeaguesStorage interface {
 	Init()
 	Add(l League) error
 	Get(key string) (League, bool)
-	DisplayLeagueName() string
-	FindTeam(team string) string
+	DisplayLeague() string
+	//Find(id string) string
 }
 
 type League struct {
