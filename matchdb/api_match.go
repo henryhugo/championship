@@ -94,8 +94,8 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		case pathMatchday.MatchString(r.URL.Path): //matchdayX
 			{
-				var m MatchesL
-				id := parts[3]
+				/*var m MatchesL
+				id := parts[3]*/
 				infoWanted := parts[4]
 				strings.Replace(infoWanted, "m", "M", 1)
 				tab := strings.SplitAfterN(infoWanted, "y", 2)
