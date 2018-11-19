@@ -72,7 +72,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 			{
 				var m MatchesL
 				id := parts[3]
-				infoWanted := parts[4]
+				//infoWanted := parts[4]
 				m, ok := Global_db.Get(id)
 				if !ok {
 					// TODO find a better Error Code (HTTP Status)
