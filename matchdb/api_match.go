@@ -137,7 +137,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 						for _, r := range m.Rounds {
 							if r.Name == iw {
 								for _, m := range r.Matches {
-									fmt.Fprint(w, m.Team1.Name+"-"+m.Team2.Name+" "+m.Date)
+									fmt.Fprint(w, m.Team1.Name+"-"+m.Team2.Name+" "+m.Date+"\n")
 								}
 							}
 						}
