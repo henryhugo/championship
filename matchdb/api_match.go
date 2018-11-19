@@ -118,20 +118,21 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		case pathMatchFields.MatchString(r.URL.Path): //
 			{
-				var m MatchesL
-				id := parts[3]
+				//var m MatchesL
+				//id := parts[3]
 				infoWanted := parts[4]
-				strings.Replace(infoWanted, "m", "M", 1)
+				infoWanted = strings.Replace(infoWanted, "m", "M", 1)
 				tab := strings.SplitAfterN(infoWanted, "y", 2)
 				iw := tab[0] + " " + tab[1]
 				info := parts[5]
-				m, ok := Global_db.Get(id)
+				/*m, ok := Global_db.Get(id)
 				if !ok {
 					// TODO find a better Error Code (HTTP Status)
 					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
 					return
-				}
-				switch info {
+				}*/
+				fmt.Fprint(w, info+" "+infoWanted+" "+iw)
+				/*switch info {
 				case "date":
 					{
 						for _, r := range m.Rounds {
@@ -158,7 +159,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					{
 
 					}
-				}
+				}*/
 			}
 
 		}
