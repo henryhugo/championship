@@ -3,6 +3,7 @@ package leaguedb
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -99,11 +100,11 @@ func (db *LeaguesMongoDB) FindTeam(team string) string {
 	}
 	defer session.Close()
 
-	league := League{}
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).One(&league)
+	//league := League{}
+	//err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).One(&league)
 	cnt, err := session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).Count()
 
 	//res := "Your team play in league " + league.Name + "their code is" + league.Teams[cnt].Code
-	res := cnt
-	return string(res)
+	res := strconv.Itoa(cnt)
+	return res
 }
