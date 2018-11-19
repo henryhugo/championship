@@ -12,7 +12,8 @@ To have information about the leagues use https://championshipleague.herokuapp.c
 
 To put information about a league use https://championshipleague.herokuapp.com/champ/leagues/ using POST method with the proper .json file
 
-To have information about a league use https://championshipleague.herokuapp.com/champ/leagues/{#id}/{country|name|leagueID|teams} using GET method or just https://championshipleague.herokuapp.com/champ/leagues/{#id}
+To have information about a league use https://championshipleague.herokuapp.com/champ/leagues/{#id}/{country|name|leagueID|teams} using GET method or just https://championshipleague.herokuapp.com/champ/leagues/{#id} 
+ex : id0/country
 
 To Delete a league  use https://championshipleague.herokuapp.com/champ/leagues/delete/{#id} with DELETE method
 
@@ -27,7 +28,7 @@ To put information about a league and the matches use https://championshipleague
 For a league https://championshipleague.herokuapp.com/champ/matchs/{#id} using GET method or 
 https://championshipleague.herokuapp.com/champ/matchs/{#id}/{name|leagueID|rounds}
 
-To have information about a league matchday use https://championshipleague.herokuapp.com/champ/matchs/{#id}/{#matchday} using GET method 
+To have information about a league matchday use https://championshipleague.herokuapp.com/champ/matchs/{#id}/{#matchday} using GET method (ex : id0/matchday1)
 
 To have information about a matchday use https://championshipleague.herokuapp.com/champ/matchs/{#id}/{#matchday}/{date|team1|team2|score1|score2}
 
@@ -39,6 +40,8 @@ To Delete a league and the list a matches use https://championshipleague.herokua
 Webhook League URL : https://championshipleague.herokuapp.com/champ/webhookLeague/ using PUSH method with the proper URL link to the webhook for registration
 
 Same for Match URL : https://championshipleague.herokuapp.com/champ/webhookMatch/
+
+https://championshipleague.herokuapp.com/champ/webhookMatch/{#id} with GET method to see the webhook URL
 
 ### With curl
 
