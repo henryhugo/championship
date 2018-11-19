@@ -9,16 +9,16 @@ type LeaguesStorage interface {
 }
 
 type League struct {
-	Name     string `bson:"Name"`
-	Country  string `bson:"Country"`
-	LeagueID string `bson:"LeagueID"`
-	Teams    []Team `bson:"Teams"`
+	Name     string `json:"name"`
+	Country  string `json:"country"`
+	LeagueID string `json:"leagueID"`
+	Teams    []Team `json:"teams"`
 }
 
 type Team struct {
-	Key  string `bson:"Key"`
-	Name string `bson:"Name"`
-	Code string `bson:"Code"`
+	Key  string `json:"key"`
+	Name string `json:"name"`
+	Code string `json:"code"`
 }
 
 type LeaguesDB struct {
