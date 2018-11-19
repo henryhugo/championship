@@ -44,7 +44,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 					fmt.Print(err.Error())
 				}
 				fmt.Println(resp.Status)
-				fmt.Fprint(w, "ok") // 200 by default
+				fmt.Fprint(w, "ok") 
 				return
 			}
 		}
