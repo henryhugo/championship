@@ -51,7 +51,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 		http.Header.Add(w.Header(), "content-type", "application/json")
-		//parts := strings.Split(r.URL.Path, "/")
+		parts := strings.Split(r.URL.Path, "/")
 		switch {
 		case pathLeague.MatchString(r.URL.Path):
 			{
@@ -60,8 +60,8 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		case pathTeamid.MatchString(r.URL.Path):
 			{
-				//teamName := parts[3]
-				//fmt.Fprint(w, Global_db.FindTeam(teamName))
+				teamName := parts[3]
+				fmt.Fprint(w, Global_db.FindTeam(teamName))
 			}
 
 		}

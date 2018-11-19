@@ -92,7 +92,7 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	return string(out)
 }
 
-/*func (db *LeaguesMongoDB) FindTeam(team string) string {
+func (db *LeaguesMongoDB) FindTeam(team string) string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -100,8 +100,8 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 	defer session.Close()
 
 	league := League{}
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).One(&league)
+	cnt, err := session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"teams": bson.M{"name": team}}).Count()
 
-	res := "Your team play in league " + league.Name + "their code is" + league.Teams[team].code
+	res := "Your team play in league " + league.Name + "their code is" + league.Teams[cnt].Code
 	return res
-}*/
+}
