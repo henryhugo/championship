@@ -94,15 +94,15 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		case pathMatchday.MatchString(r.URL.Path): //matchdayX
 			{
-				//var m MatchesL
-				//id := parts[3]
+				var m MatchesL
+				id := parts[3]
 				infoWanted := parts[4]
 				infoWanted = strings.Replace(infoWanted, "m", "M", 1)
 				tab := strings.SplitAfterN(infoWanted, "y", 2)
 
 				info := tab[0] + " " + tab[1]
 				fmt.Fprint(w, info)
-				/*m, ok := Global_db.Get(id)
+				m, ok := Global_db.Get(id)
 				if !ok {
 					// TODO find a better Error Code (HTTP Status)
 					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
@@ -113,7 +113,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 					if r.Name == info {
 						json.NewEncoder(w).Encode(r.Matches)
 					}
-				}*/
+				}
 
 			}
 		case pathMatchFields.MatchString(r.URL.Path): //
