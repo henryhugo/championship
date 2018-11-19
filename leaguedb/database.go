@@ -74,7 +74,7 @@ func (db *LeaguesMongoDB) Get(keyID string) (League, bool) {
 	return league, allWasGood
 }
 
-func (db *LeaguesMongoDB) DisplayLeagueName() string {
+func (db *LeaguesMongoDB) DisplayLeagueName() []string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -83,10 +83,11 @@ func (db *LeaguesMongoDB) DisplayLeagueName() string {
 
 	//allWasGood := true
 
-	league := League{}
-	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).One(&league)
+	//league := League{}
+	var nameList []string
+	err = session.DB(db.DatabaseName).C(db.LeaguesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).All(&nameList)
 
-	return league.Name
+	return nameList
 }
 
 /*func (db *LeaguesMongoDB) FindTeam(team string) string {
