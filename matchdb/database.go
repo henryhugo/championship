@@ -100,7 +100,7 @@ func (db *MatchesMongoDB) RemoveDocument(keyID string) {
 
 	//allWasGood := true
 
-	err = session.DB(db.DatabaseName).C(db.MatchesCollectionName).Remove(bson.M{"name": keyID})
+	err = session.DB(db.DatabaseName).C(db.MatchesCollectionName).Remove(bson.M{"leagueID": keyID})
 	if err != nil {
 		fmt.Printf("remove fail %v\n", err)
 		os.Exit(1)
