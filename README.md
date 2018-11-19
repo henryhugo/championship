@@ -18,7 +18,7 @@ To have information about a league use https://championshipleague.herokuapp.com/
 
 To have information about the matches of all leagues just use https://championshipleague.herokuapp.com/champ/matchs using GET method
 
-To put information about a league use https://championshipleague.herokuapp.com/champ/matchs/ using PUSH method with the proper .json file
+To put information about a league and the matches use https://championshipleague.herokuapp.com/champ/matchs/ using PUSH method with the proper .json file
 
 For a league https://championshipleague.herokuapp.com/champ/matchs/{#id} using GET method or 
 https://championshipleague.herokuapp.com/champ/matchs/{#id}/{name|leagueID|rounds}
@@ -26,6 +26,8 @@ https://championshipleague.herokuapp.com/champ/matchs/{#id}/{name|leagueID|round
 To have information about a league matchday use https://championshipleague.herokuapp.com/champ/matchs/{#id}/{#matchday} using GET method 
 
 To have information about a matchday use https://championshipleague.herokuapp.com/champ/matchs/{#id}/{#matchday}/{date|team1|team2|score1|score2}
+
+To Delete a league and the list a matches use https://championshipleague.herokuapp.com/champ/matchs/delete/{#id} with DELETE method
 
 
 ## Webhhooks
