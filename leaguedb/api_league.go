@@ -118,4 +118,4 @@ func InitWh() {
 
 var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
 var pathLeague, _ = regexp.Compile("/champ/leagues[/]{1}$")
-var pathTeamid, _ = regexp.Compile("/champ/leagues/[A-Z]{3}$")
+var pathTeamid, _ = regexp.Compile("/champ/leagues/[A-Za-z]+")
