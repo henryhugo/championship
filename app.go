@@ -9,7 +9,7 @@ import (
 )
 
 func champ(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "api for championship league")
+	fmt.Fprintln(w, "API for championship league")
 }
 
 func main() {
@@ -38,8 +38,9 @@ func main() {
 	port := os.Getenv("PORT")
 
 	http.HandleFunc("/champ", champ)
-	http.HandleFunc("/champ/leagues/", leaguedb.LeagueHandler)  //POST and GET
-	http.HandleFunc("/champ/webhook/", leaguedb.WebhookHandler) //POST and GET
-	http.HandleFunc("/champ/matchs/", matchdb.MatchHandler)     //POST
+	http.HandleFunc("/champ/leagues/", leaguedb.LeagueHandler)              //POST and GET
+	http.HandleFunc("/champ/webhookLeague/", leaguedb.WebhookLeagueHandler) //POST and GET
+	http.HandleFunc("/champ/matchs/", matchdb.MatchHandler)
+	http.HandleFunc("/champ/webhookMatch/", matchdb.WebhookMatchHandler) //POST
 	http.ListenAndServe(":"+port, nil)
 }

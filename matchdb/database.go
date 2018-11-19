@@ -1,6 +1,7 @@
 package matchdb
 
 import (
+	"encoding/json"
 	"fmt"
 
 	mgo "gopkg.in/mgo.v2"
@@ -74,7 +75,7 @@ func (db *MatchesMongoDB) Get(keyID string) (MatchesL, bool) {
 	return matchesL, allWasGood
 }
 
-func (db *MatchesMongoDB) DisplayMatches() MatchesL {
+func (db *MatchesMongoDB) DisplayMatches() string {
 	session, err := mgo.Dial(db.DatabaseURL)
 	if err != nil {
 		panic(err)
@@ -83,9 +84,8 @@ func (db *MatchesMongoDB) DisplayMatches() MatchesL {
 
 	//allWasGood := true
 
-	matchesL := MatchesL{}
-	//var nameList []League
-	err = session.DB(db.DatabaseName).C(db.MatchesCollectionName).Find(bson.M{"name": bson.M{"$regex": "[a-zA-Z]+"}}).One(&matchesL)
-
-	return matchesL
+	var list []MatchesL
+	err = session.DB(db.DatabaseName).C(db.MatchesCollectionName).Find(nil).All(&list)
+	out, err := json.MarshalIndent(list, " ", " ")
+	return string(out)
 }

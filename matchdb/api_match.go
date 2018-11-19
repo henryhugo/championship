@@ -51,18 +51,113 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 
 	case "GET":
 		http.Header.Add(w.Header(), "content-type", "application/json")
-		//parts := strings.Split(r.URL.Path, "/")
+		parts := strings.Split(r.URL.Path, "/")
 		switch {
-		case pathMatches.MatchString(r.URL.Path):
+		case pathMatchs.MatchString(r.URL.Path):
 			{
-
-				//fmt.Fprint(w, Global_db.DisplayMatches())
+				fmt.Fprint(w, Global_db.DisplayMatches())
 			}
-			/*case pathTeamid.MatchString(r.URL.Path):
+		case pathMatchsID.MatchString(r.URL.Path):
 			{
-				teamName := parts[4]
-				fmt.Fprint(w, Global_db.FindTeam(teamName))
-			}*/
+				id := parts[3]
+				m, ok := Global_db.Get(id)
+				if !ok {
+					// TODO find a better Error Code (HTTP Status)
+					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
+					return
+				}
+				json.NewEncoder(w).Encode(m)
+			}
+		case pathMatchsFields.MatchString(r.URL.Path):
+			{
+				var m MatchesL
+				id := parts[3]
+				infoWanted := parts[4]
+				m, ok := Global_db.Get(id)
+				if !ok {
+					// TODO find a better Error Code (HTTP Status)
+					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
+					return
+				}
+				switch infoWanted {
+				case "name":
+					fmt.Fprint(w, m.Name)
+				case "leagueID":
+					fmt.Fprint(w, m.LeagueID)
+				case "rounds":
+					fmt.Fprint(w, m.Rounds)
+				default:
+					fmt.Fprint(w, "Not found")
+
+				}
+
+			}
+		case pathMatchday.MatchString(r.URL.Path): //matchdayX
+			{
+				var m MatchesL
+				id := parts[3]
+				infoWanted := parts[4]
+				strings.Replace(infoWanted, "m", "M", 1)
+				tab := strings.SplitAfterN(infoWanted, "y", 2)
+				info := tab[0] + " " + tab[1]
+				m, ok := Global_db.Get(id)
+				if !ok {
+					// TODO find a better Error Code (HTTP Status)
+					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
+					return
+				}
+
+				for _, r := range m.Rounds {
+					if r.Name == info {
+						json.NewEncoder(w).Encode(r.Matches)
+					}
+				}
+
+			}
+		case pathMatchFields.MatchString(r.URL.Path): //
+			{
+				var m MatchesL
+				id := parts[3]
+				infoWanted := parts[4]
+				strings.Replace(infoWanted, "m", "M", 1)
+				tab := strings.SplitAfterN(infoWanted, "y", 2)
+				iw := tab[0] + " " + tab[1]
+				info := parts[5]
+				m, ok := Global_db.Get(id)
+				if !ok {
+					// TODO find a better Error Code (HTTP Status)
+					http.Error(w, "Matchs don't exists.", http.StatusBadRequest)
+					return
+				}
+				switch info {
+				case "date":
+					{
+						for _, r := range m.Rounds {
+							if r.Name == iw {
+								for _, m := range r.Matches {
+									fmt.Fprint(w, m.Date)
+								}
+							}
+						}
+					}
+				case "team1":
+					{
+
+					}
+				case "team2":
+					{
+
+					}
+				case "score1":
+					{
+
+					}
+				case "score2":
+					{
+
+					}
+				}
+			}
 
 		}
 
@@ -73,7 +168,7 @@ func MatchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func WebhookHandler(w http.ResponseWriter, r *http.Request) {
+func WebhookMatchHandler(w http.ResponseWriter, r *http.Request) {
 	http.Header.Add(w.Header(), "content-type", "application/json")
 	parts := strings.Split(r.URL.Path, "/")
 	switch r.Method {
@@ -117,4 +212,8 @@ func InitWh() {
 }
 
 var pathwhID, _ = regexp.Compile("/champ/webhook/id[0-9]+$")
-var pathMatches, _ = regexp.Compile("/champ/matches/[a-z]{3}$")
+var pathMatchs, _ = regexp.Compile("/champ/matchs/$")
+var pathMatchsID, _ = regexp.Compile("/champ/matchs/id[0-9]+$")
+var pathMatchday, _ = regexp.Compile("/champ/matchs/id[0-9]+/matchday[0-9]+&")
+var pathMatchsFields, _ = regexp.Compile("/champ/matchs/id[0-9]+/(name$|leagueID$|rounds$)&")
+var pathMatchFields, _ = regexp.Compile("/champ/matchs/id[0-9]+/matchday[0-9]+/(date$|team1$|team2$|score1|score2)&")

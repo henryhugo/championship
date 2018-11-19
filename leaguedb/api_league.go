@@ -112,7 +112,7 @@ func LeagueHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func WebhookHandler(w http.ResponseWriter, r *http.Request) {
+func WebhookLeagueHandler(w http.ResponseWriter, r *http.Request) {
 	http.Header.Add(w.Header(), "content-type", "application/json")
 	parts := strings.Split(r.URL.Path, "/")
 	switch r.Method {

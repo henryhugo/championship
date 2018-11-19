@@ -4,8 +4,7 @@ type MatchesStorage interface {
 	Init()
 	Add(m MatchesL) error
 	Get(key string) (MatchesL, bool)
-	//DisplayMatches() MatchesL
-
+	DisplayMatches() MatchesL
 }
 
 type Team struct {
