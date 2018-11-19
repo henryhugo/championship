@@ -27,9 +27,9 @@ func main() {
 
 	//in memory storage
 	matchdb.Global_db = &matchdb.MatchesMongoDB{
-		DatabaseURL:           "mongodb://fahadem:269093f@ds051658.mlab.com:51658/championship",
+		DatabaseURL:           "mongodb://hugoh:6926a5b8@ds057548.mlab.com:57548/championship",
 		DatabaseName:          "championship",
-		MatchesCollectionName: "matches",
+		MatchesCollectionName: "matchs",
 	}
 
 	//mongodb storage
