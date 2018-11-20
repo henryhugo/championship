@@ -4,6 +4,10 @@ Build RESTful API in Go and MongoDB The REST API service will expose endpoints t
 
 We worked ~20h each on the project, we learned about mongodb because we had difficulties with it during the 2nd assignement. What was hard was to find json files that we can use for football leagues and using mongodb with golang because their not so much exemple on internet. For this type of project, it it probably easier to choose sql because we have relatonal data structure. We can be limited if we decide to improve our project with MongoDB.
 
+- Heroku
+- MongoDB
+- Slack Webhooks
+
 The app url is https://championshipleague.herokuapp.com
 
 The home page is https://championshipleague.herokuapp.com/champ
